@@ -44,7 +44,7 @@ const BaseNavbar = () => {
       <div className="navbar">
         <div className="container inner">
           <div className="brand">
-            <img src="/images/logo.png" alt="ViaCapeTown" />
+            <img src="/images/viacapetown-logo.webp" alt="ViaCapeTown logo" />
             <div className="brand-name">ViaCapeTown</div>
           </div>
           <nav className="nav-links">

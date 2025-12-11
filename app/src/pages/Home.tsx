@@ -56,7 +56,7 @@ const Home = () => {
 
   return (
     <>
-      <section className="hero">
+      <section className="hero home">
         <div className="container hero-content">
           <h1 className="hero-title">The Gateway to Africa ViaCapeTown</h1>
           <div className="search-card card">

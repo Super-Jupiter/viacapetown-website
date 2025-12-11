@@ -1,7 +1,21 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap");
+@font-face {
+  font-family: "Gateway";
+  src: url("/fonts/Gateway-Regular.woff2") format("woff2"), url("/fonts/Gateway-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gateway";
+  src: url("/fonts/Gateway-Regular.woff2") format("woff2"), url("/fonts/Gateway-Regular.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
-  font-family: "Open Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-family: "Gateway", "Segoe UI", system-ui, -apple-system, sans-serif;
   line-height: 1.6;
   font-weight: 400;
   color: #102445;
@@ -248,8 +262,12 @@ img {
   align-items: flex-end;
   padding: 80px 0 70px;
   color: #fff;
+}
+
+.hero.home {
   background: linear-gradient(135deg, rgba(7, 24, 61, 0.45), rgba(7, 24, 61, 0.2)),
-    url("/images/home-hero.jpg") center/cover no-repeat;
+    url("/images/home-page-hero-image.jpg") center/cover no-repeat;
+  background-attachment: fixed;
 }
 
 .hero.about {
