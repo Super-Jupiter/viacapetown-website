@@ -6,9 +6,12 @@ const BaseFooter = () => {
     <>
       <section className="newsletter">
         <div className="container inner">
-          <div>
-            <div className="newsletter-title">Get Updates &amp; Promotions</div>
-            <div style={{ color: "#5c6a86" }}>Thoughtful ideas to your inbox</div>
+          <div className="newsletter-heading">
+            <img className="newsletter-logo" src="/images/viacapetown-logo.webp" alt="ViaCapeTown logo" />
+            <div>
+              <div className="newsletter-title">Get Updates &amp; Promotions</div>
+              <div style={{ color: "#5c6a86" }}>Thoughtful ideas to your inbox</div>
+            </div>
           </div>
           <form className="newsletter-form">
             <input type="email" placeholder="Your Email" />

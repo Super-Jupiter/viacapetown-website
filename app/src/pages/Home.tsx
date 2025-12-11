@@ -9,41 +9,47 @@ const searchTabs: { key: TabKey; label: string }[] = [
 ];
 
 const offerCards = [
-  { title: "SAVE 40%", image: "/images/offer-save.jpg", cta: "ViaCapeTown.com" },
+  { title: "SAVE 40%", image: "/images/home-offer-1-of-3.png", cta: "ViaCapeTown.com" },
   { title: "Need a hotel room five minutes ago?", image: "/images/offer-hotel.jpg", cta: "Book now" },
-  { title: "Get a great deal on a flight", image: "/images/offer-flight.jpg", cta: "Flights" },
+  { title: "Get a great deal on a flight", image: "/images/home-offer-3-of-3.png", cta: "Flights" },
 ];
 
 const destinations = [
-  { label: "Cape Town", image: "/images/dest-cape-town.jpg" },
-  { label: "South African Safaris", image: "/images/dest-safari.jpg" },
-  { label: "Namibia & Botswana", image: "/images/dest-namibia.jpg" },
-  { label: "Wine & Vines", image: "/images/dest-wines.jpg" },
-  { label: "Cruise Tours", image: "/images/dest-cruise.jpg" },
-  { label: "Explore Africa", image: "/images/dest-africa.jpg" },
-  { label: "Garden Route", image: "/images/dest-garden-route.jpg" },
-  { label: "African Islands", image: "/images/dest-islands.jpg" },
-  { label: "Antarctica", image: "/images/dest-antarctica.jpg" },
+  { label: "Cape Town", image: "/images/home-destinations-1-of-9.jpg" },
+  { label: "Wines & Wales", image: "/images/home-destinations-2-of-9.jpg" },
+  { label: "Garden Route", image: "/images/home-destinations-3-of-9.jpg" },
+  { label: "South African Safaris", image: "/images/home-destinations-4-of-9.jpg" },
+  { label: "Cruise Tours", image: "/images/home-destinations-5-of-9.jpg" },
+  { label: "African Islands", image: "/images/home-destinations-6-of-9.jpg" },
+  { label: "Namibia & Botswana", image: "/images/home-destinations-7-of-9.jpg" },
+  { label: "Explore Africa", image: "/images/home-destinations-8-of-9.jpg" },
+  { label: "Antartica", image: "/images/home-destinations-9-of-9.jpg" },
 ];
 
 const trips = [
   {
-    title: "7 Day Garden Route Tour",
-    image: "/images/trip-garden-route.jpg",
+    title: "Golf Tours",
+    image: "/images/home-also-offer-1-of-4.jpg",
     price: "From $20,000",
     rating: "4.9 / 5 (142 reviews)",
   },
   {
-    title: "7 Day Cape Town Tour",
-    image: "/images/trip-cape-town.jpg",
+    title: "Rugby Tours",
+    image: "/images/home-also-offer-2-of-4.jpg",
     price: "From $50,000",
     rating: "4.8 / 5 (110 reviews)",
   },
   {
-    title: "7 Day Namibia Tour",
-    image: "/images/trip-namibia.jpg",
+    title: "Conferences",
+    image: "/images/home-also-offer-3-of-4.jpg",
     price: "From $60,000",
     rating: "4.9 / 5 (88 reviews)",
+  },
+  {
+    title: "Team Building",
+    image: "/images/home-also-offer-4-of-4.jpg",
+    price: "From $18,000",
+    rating: "4.7 / 5 (95 reviews)",
   },
 ];
 

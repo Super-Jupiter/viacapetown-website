@@ -272,12 +272,14 @@ img {
 
 .hero.about {
   background: linear-gradient(135deg, rgba(7, 24, 61, 0.45), rgba(7, 24, 61, 0.2)),
-    url("/images/about-hero.jpg") center/cover no-repeat;
+    url("/images/about-us-hero-image.jpg") center/cover no-repeat;
 }
 
 .hero.contact {
   background: linear-gradient(135deg, rgba(7, 24, 61, 0.55), rgba(7, 24, 61, 0.2)),
-    url("/images/contact-hero.jpg") center/cover no-repeat;
+    url("/images/contact-us-hero-image.jpg") center/cover no-repeat;
+  min-height: 260px;
+  padding: 50px 0 30px;
 }
 
 .hero-content {
@@ -395,6 +397,7 @@ img {
 .offer-card {
   overflow: hidden;
   min-height: 200px;
+  aspect-ratio: 1 / 1;
   position: relative;
   color: #fff;
 }
@@ -410,6 +413,7 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  max-height: 100%;
 }
 
 .offer-card .content {
@@ -440,7 +444,7 @@ img {
 
 .dest-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
 }
 
@@ -448,7 +452,8 @@ img {
   position: relative;
   overflow: hidden;
   border-radius: 4px;
-  min-height: 140px;
+  min-height: 220px;
+  aspect-ratio: 1 / 1;
   isolation: isolate;
 }
 
@@ -484,7 +489,7 @@ img {
 
 .offers-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 18px;
   align-items: stretch;
 }
@@ -532,9 +537,31 @@ img {
   gap: 18px;
 }
 
+.newsletter-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.newsletter-logo {
+  height: 86px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
 .newsletter-title {
   font-weight: 700;
   color: var(--navy-dark);
+}
+
+.about-breadcrumb {
+  color: #4a5568;
+  margin-bottom: 12px;
+}
+
+.about-breadcrumb a {
+  color: #4a5568;
 }
 
 .newsletter-form {
@@ -599,6 +626,11 @@ footer {
 
 .content-section {
   padding: 60px 0 70px;
+}
+
+.about-content {
+  margin-top: -50px;
+  padding-top: 50px;
 }
 
 .about-grid {
@@ -666,6 +698,41 @@ footer {
   background: #fff;
 }
 
+.contact-highlight {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  overflow: visible;
+}
+
+.contact-card.contact-accent {
+  background: #f45b3d;
+  color: #fff;
+  border: none;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 1 / 1;
+}
+
+.contact-accent-text {
+  color: #ffe8e0;
+}
+
+.contact-floating-image {
+  position: absolute;
+  right: -35%;
+  height: 80%;
+  width: 70%;
+  object-fit: cover;
+  border-radius: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+}
+
 .contact-card input,
 .contact-card textarea {
   width: 100%;
@@ -693,7 +760,8 @@ footer {
 }
 
 .map img {
-  width: 100%;
+  width: 135%;
+  max-width: none;
   border-radius: 4px;
   border: 1px solid #dbe1ec;
 }

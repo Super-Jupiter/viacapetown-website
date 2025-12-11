@@ -11,15 +11,15 @@ const Contact = () => {
     <>
       <section className="hero contact">
         <div className="container hero-content">
-          <div className="breadcrumb">
-            <Link to="/">Home</Link> / Contact Us
-          </div>
           <h1 className="hero-title">Contact</h1>
         </div>
       </section>
 
       <section className="content-section">
         <div className="container">
+          <div className="breadcrumb about-breadcrumb">
+            <Link to="/">Home</Link> / Contact Us
+          </div>
           <div className="contact-grid">
             <div className="contact-card">
               <h3>We&apos;d love to hear from you</h3>
@@ -32,22 +32,24 @@ const Contact = () => {
               </button>
             </div>
 
-            <div className="contact-card" style={{ background: "#f45b3d", color: "#fff" }}>
-              <h3>ViaCapeTown.com</h3>
-              <p style={{ color: "#ffe8e0" }}>Email: booking@viacapetown.com</p>
-              <p style={{ color: "#ffe8e0" }}>Tel: +27 (0) 71 324 9488</p>
-              <p style={{ color: "#ffe8e0" }}>101 Loop St, Cape Town City Centre, Cape Town, 8001</p>
+            <div className="contact-highlight">
+              <div className="contact-card contact-accent">
+                <h3>ViaCapeTown.com</h3>
+                <p className="contact-accent-text">Email: booking@viacapetown.com</p>
+                <p className="contact-accent-text">Tel: +27 (0) 71 324 9488</p>
+                <p className="contact-accent-text">101 Loop St, Cape Town City Centre, Cape Town, 8001</p>
+              </div>
               <img
-                src="/images/contact-side.jpg"
-                alt="Beach"
-                style={{ marginTop: 12, borderRadius: 6 }}
+                className="contact-floating-image"
+                src="/images/contact-us-behind-orange.jpg"
+                alt="Tropical island"
                 onError={handleImageError}
               />
             </div>
           </div>
 
           <div className="map">
-            <img src="/images/contact-map.jpg" alt="Cape Town map" onError={handleImageError} />
+            <img src="/images/contact-us-map.jpg" alt="Cape Town map" onError={handleImageError} />
           </div>
         </div>
       </section>

@@ -5,19 +5,19 @@ const About = () => {
     <>
       <section className="hero about">
         <div className="container hero-content">
-          <div className="breadcrumb">
-            <Link to="/">Home</Link> / About Us
-          </div>
           <h1 className="hero-title">About Us</h1>
         </div>
       </section>
 
-      <section className="content-section">
+      <section className="content-section about-content">
         <div className="container">
+          <div className="breadcrumb about-breadcrumb">
+            <Link to="/">Home</Link> / About Us
+          </div>
           <div className="about-grid">
             <div className="video-card card">
               <iframe
-                src="https://www.youtube.com/embed/Oe421EPjeBE"
+                src="https://www.youtube.com/embed/d6scLtB0C38"
                 title="Tourism in South Africa"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -33,7 +33,7 @@ const About = () => {
 
             <div className="video-card card">
               <iframe
-                src="https://www.youtube.com/embed/AGBjI0x9VbM"
+                src="https://www.youtube.com/embed/h7M5VsCFJfw"
                 title="Visit Namibia and enjoy our space and time"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
