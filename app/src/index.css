@@ -44,6 +44,14 @@ body {
   color: var(--text);
 }
 
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 20;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -191,9 +199,9 @@ img {
 }
 
 .navbar {
-  background: #1f3f7f;
+  background: transparent;
   color: #fff;
-  box-shadow: 0 8px 20px rgba(6, 28, 70, 0.18);
+  box-shadow: none;
   position: sticky;
   top: 0;
   z-index: 10;
