@@ -276,19 +276,16 @@ img {
 }
 
 .hero.home {
-  background: linear-gradient(135deg, rgba(7, 24, 61, 0.45), rgba(7, 24, 61, 0.2)),
-    url("/images/home-page-hero-image.jpg") center/cover no-repeat;
+  background: url("/images/home-page-hero-image.jpg") center/cover no-repeat;
   background-attachment: fixed;
 }
 
 .hero.about {
-  background: linear-gradient(135deg, rgba(7, 24, 61, 0.45), rgba(7, 24, 61, 0.2)),
-    url("/images/about-us-hero-image.jpg") center/cover no-repeat;
+  background: url("/images/about-us-hero-image.jpg") center/cover no-repeat;
 }
 
 .hero.contact {
-  background: linear-gradient(135deg, rgba(7, 24, 61, 0.55), rgba(7, 24, 61, 0.2)),
-    url("/images/contact-us-hero-image.jpg") center/cover no-repeat;
+  background: url("/images/contact-us-hero-image.jpg") center/cover no-repeat;
   min-height: 260px;
   padding: 50px 0 30px;
 }
@@ -419,10 +416,7 @@ img {
 }
 
 .offer-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(9, 26, 60, 0.28), rgba(9, 26, 60, 0.7));
+  content: none;
 }
 
 .offer-card img {
@@ -559,11 +553,7 @@ img {
 }
 
 .dest-media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(5, 22, 50, 0.2), rgba(5, 22, 50, 0.65));
-  z-index: 1;
+  content: none;
 }
 
 .dest-media img {
