@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap");
+
 @font-face {
   font-family: "Gateway";
   src: url("/fonts/Gateway-Regular.woff2") format("woff2"), url("/fonts/Gateway-Regular.woff") format("woff");
@@ -578,9 +580,12 @@ img {
 .dest-card .label {
   position: static;
   z-index: 1;
-  font-weight: 700;
-  letter-spacing: 0.2px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: 0.1px;
   color: var(--navy);
+  text-align: center;
 }
 
 .offers {
