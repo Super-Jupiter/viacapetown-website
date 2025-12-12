@@ -298,12 +298,17 @@ img {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  align-items: flex-start;
 }
 
 .hero-title {
   font-size: 36px;
   font-weight: 700;
   text-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.contact-title-offset {
+  margin-left: 135px;
 }
 
 .search-card {
@@ -830,8 +835,20 @@ footer {
   aspect-ratio: 1 / 1;
 }
 
+.contact-accent-body {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  gap: 8px;
+}
+
 .contact-accent-text {
   color: #ffe8e0;
+}
+
+.contact-accent-text.contact-accent-tel {
+  color: #0b1a36;
+  font-weight: 500;
 }
 
 .contact-floating-image {

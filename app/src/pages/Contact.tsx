@@ -11,7 +11,7 @@ const Contact = () => {
     <>
       <section className="hero contact">
         <div className="container hero-content">
-          <h1 className="hero-title">Contact</h1>
+          <h1 className="hero-title contact-title-offset">Contact</h1>
         </div>
       </section>
 
@@ -36,9 +36,11 @@ const Contact = () => {
               <div className="contact-highlight">
                 <div className="contact-card contact-accent">
                   <h3>ViaCapeTown.com</h3>
-                  <p className="contact-accent-text">Email: booking@viacapetown.com</p>
-                  <p className="contact-accent-text">Tel: +27 (0) 71 324 9488</p>
-                  <p className="contact-accent-text">101 Loop St, Cape Town City Centre, Cape Town, 8001</p>
+                  <div className="contact-accent-body">
+                    <p className="contact-accent-text contact-accent-tel">Tel: +27 (0) 71 324 9488</p>
+                    <p className="contact-accent-text">Email: booking@viacapetown.com</p>
+                    <p className="contact-accent-text">101 Loop St, Cape Town City Centre, Cape Town, 8001</p>
+                  </div>
                 </div>
                 <img
                   className="contact-floating-image"
