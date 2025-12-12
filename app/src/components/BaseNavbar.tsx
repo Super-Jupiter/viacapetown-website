@@ -58,11 +58,6 @@ const BaseNavbar = () => {
               Contact Us
             </NavLink>
           </nav>
-          <div className="nav-actions">
-            <div>Call us</div>
-            <div>+27 (0) 71 324 9488</div>
-            <div>booking@viacapetown.com</div>
-          </div>
         </div>
       </div>
     </header>
