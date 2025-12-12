@@ -20,36 +20,38 @@ const Contact = () => {
           <div className="breadcrumb about-breadcrumb">
             <Link to="/">Home</Link> / Contact Us
           </div>
-          <div className="contact-grid">
-            <div className="contact-card">
-              <h3>We&apos;d love to hear from you</h3>
-              <p>Send us a message and we&apos;ll respond as soon as possible.</p>
-              <input placeholder="Name" />
-              <input placeholder="Email" type="email" />
-              <textarea placeholder="Message" />
-              <button className="btn btn-primary" type="button">
-                Send Message
-              </button>
-            </div>
-
-            <div className="contact-highlight">
-              <div className="contact-card contact-accent">
-                <h3>ViaCapeTown.com</h3>
-                <p className="contact-accent-text">Email: booking@viacapetown.com</p>
-                <p className="contact-accent-text">Tel: +27 (0) 71 324 9488</p>
-                <p className="contact-accent-text">101 Loop St, Cape Town City Centre, Cape Town, 8001</p>
+          <div className="contact-scale">
+            <div className="contact-grid">
+              <div className="contact-card">
+                <h3>We&apos;d love to hear from you</h3>
+                <p>Send us a message and we&apos;ll respond as soon as possible.</p>
+                <input placeholder="Name" />
+                <input placeholder="Email" type="email" />
+                <textarea placeholder="Message" />
+                <button className="btn btn-primary" type="button">
+                  Send Message
+                </button>
               </div>
-              <img
-                className="contact-floating-image"
-                src="/images/contact-us-behind-orange.jpg"
-                alt="Tropical island"
-                onError={handleImageError}
-              />
-            </div>
-          </div>
 
-          <div className="map">
-            <img src="/images/contact-us-map.jpg" alt="Cape Town map" onError={handleImageError} />
+              <div className="contact-highlight">
+                <div className="contact-card contact-accent">
+                  <h3>ViaCapeTown.com</h3>
+                  <p className="contact-accent-text">Email: booking@viacapetown.com</p>
+                  <p className="contact-accent-text">Tel: +27 (0) 71 324 9488</p>
+                  <p className="contact-accent-text">101 Loop St, Cape Town City Centre, Cape Town, 8001</p>
+                </div>
+                <img
+                  className="contact-floating-image"
+                  src="/images/contact-us-behind-orange.jpg"
+                  alt="Tropical island"
+                  onError={handleImageError}
+                />
+              </div>
+            </div>
+
+            <div className="map">
+              <img src="/images/contact-us-map.jpg" alt="Cape Town map" onError={handleImageError} />
+            </div>
           </div>
         </div>
       </section>

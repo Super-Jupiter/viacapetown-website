@@ -2,16 +2,38 @@ import React, { useState } from "react";
 
 type TabKey = "hotels" | "flights" | "tours";
 
+type OfferCard = {
+  title: string;
+  image: string;
+  cta: string;
+  featured?: boolean;
+  subtitle?: string;
+  alignTopLeft?: boolean;
+  description?: string;
+};
+
 const searchTabs: { key: TabKey; label: string }[] = [
   { key: "hotels", label: "Hotels" },
   { key: "flights", label: "Flights" },
   { key: "tours", label: "Tours" },
 ];
 
-const offerCards = [
-  { title: "SAVE 40%", image: "/images/home-offer-1-of-3.png", cta: "ViaCapeTown.com" },
+const offerCards: OfferCard[] = [
+  {
+    title: "Save Up to 40%",
+    image: "/images/home-offer-1-of-3.png",
+    cta: "ViaCapeTown.com",
+    featured: true,
+    subtitle: "By book your own flights",
+  },
   { title: "Need a hotel room five minutes ago?", image: "/images/offer-hotel.jpg", cta: "Book now" },
-  { title: "Get a great deal on a flight", image: "/images/home-offer-3-of-3.png", cta: "Flights" },
+  {
+    title: "Get a great deal on a flight",
+    image: "/images/home-offer-3-of-3.png",
+    cta: "Flights",
+    alignTopLeft: true,
+    description: "Find the cheapest, quickest and best flights",
+  },
 ];
 
 const destinations = [
@@ -127,10 +149,34 @@ const Home = () => {
           <h2 className="section-title">Special Offers</h2>
           <div className="offer-grid">
             {offerCards.map((offer) => (
-              <div key={offer.title} className="offer-card card">
+              <div
+                key={offer.title}
+                className={`offer-card card ${offer.featured ? "offer-card-featured" : ""} ${
+                  offer.alignTopLeft ? "offer-card-top-left" : ""
+                }`}
+              >
                 <img src={offer.image} alt={offer.title} onError={handleImageError} />
                 <div className="content">
-                  <div className="offer-title">{offer.title}</div>
+                  {offer.featured ? (
+                    <div className="featured-offer-text">
+                      <div className="featured-save-line">
+                        <span className="featured-save">Save</span>
+                      </div>
+                      <div className="featured-row">
+                        <div className="featured-up-to-stack">
+                          <span className="featured-up">Up</span>
+                          <span className="featured-to">to</span>
+                        </div>
+                        <span className="featured-percent">40%</span>
+                      </div>
+                      <div className="featured-subline">{offer.subtitle}</div>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="offer-title offer-title-light">{offer.title}</div>
+                      {offer.description && <div className="offer-description">{offer.description}</div>}
+                    </>
+                  )}
                   <small>{offer.cta}</small>
                 </div>
               </div>
@@ -145,8 +191,12 @@ const Home = () => {
           <div className="dest-grid">
             {destinations.map((dest) => (
               <div key={dest.label} className="dest-card card">
-                <img src={dest.image} alt={dest.label} onError={handleImageError} />
-                <div className="label">{dest.label}</div>
+                <div className="dest-media">
+                  <img src={dest.image} alt={dest.label} onError={handleImageError} />
+                </div>
+                <div className="dest-info">
+                  <div className="label">{dest.label}</div>
+                </div>
               </div>
             ))}
           </div>
