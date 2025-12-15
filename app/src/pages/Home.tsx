@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 type TabKey = "hotels" | "flights" | "tours";
 
@@ -10,6 +11,14 @@ type OfferCard = {
   subtitle?: string;
   alignTopLeft?: boolean;
   description?: string;
+};
+
+type Trip = {
+  title: string;
+  image: string;
+  price: string;
+  rating: string;
+  link?: string;
 };
 
 const searchTabs: { key: TabKey; label: string }[] = [
@@ -48,12 +57,13 @@ const destinations = [
   { label: "Antartica", image: "/images/home-destinations-9-of-9.jpg" },
 ];
 
-const trips = [
+const trips: Trip[] = [
   {
     title: "Golf Tours",
     image: "/images/home-also-offer-1-of-4.jpg",
     price: "From $20,000",
     rating: "4.9 / 5 (142 reviews)",
+    link: "/golf-tours",
   },
   {
     title: "Rugby Tours",
@@ -207,16 +217,26 @@ const Home = () => {
         <div className="container">
           <h2 className="section-title">We also Offer</h2>
           <div className="offers-row">
-            {trips.map((trip) => (
-              <div key={trip.title} className="trip-card card">
-                <img src={trip.image} alt={trip.title} onError={handleImageError} />
-                <div className="trip-body">
-                  <h3 style={{ margin: 0 }}>{trip.title}</h3>
-                  <div className="trip-meta">{trip.rating}</div>
-                  <div className="price">{trip.price}</div>
+            {trips.map((trip) => {
+              const card = (
+                <div className="trip-card card">
+                  <img src={trip.image} alt={trip.title} onError={handleImageError} />
+                  <div className="trip-body">
+                    <h3 style={{ margin: 0 }}>{trip.title}</h3>
+                    <div className="trip-meta">{trip.rating}</div>
+                    <div className="price">{trip.price}</div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+
+              return trip.link ? (
+                <Link key={trip.title} to={trip.link} className="trip-card-link">
+                  {card}
+                </Link>
+              ) : (
+                <React.Fragment key={trip.title}>{card}</React.Fragment>
+              );
+            })}
           </div>
         </div>
       </section>
