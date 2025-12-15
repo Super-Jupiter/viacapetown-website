@@ -70,6 +70,7 @@ const trips: Trip[] = [
     image: "/images/home-also-offer-2-of-4.jpg",
     price: "From $50,000",
     rating: "4.8 / 5 (110 reviews)",
+    link: "/rugby-tours",
   },
   {
     title: "Conferences",
