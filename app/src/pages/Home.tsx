@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 type TabKey = "hotels" | "flights" | "tours";
@@ -16,8 +17,8 @@ type OfferCard = {
 type Trip = {
   title: string;
   image: string;
-  price: string;
-  rating: string;
+  price?: string;
+  rating?: string;
   link?: string;
 };
 
@@ -59,6 +60,13 @@ const destinations = [
 
 const trips: Trip[] = [
   {
+    title: "Adventure Tours",
+    image: "/images/home-also-offer-1-of-5.jpg",
+    price: "From $100,00",
+    rating: "5/5 reviews",
+    link: "/adventure-tours",
+  },
+  {
     title: "Golf Tours",
     image: "/images/home-also-offer-1-of-4.jpg",
     price: "From $20,000",
@@ -88,6 +96,42 @@ const trips: Trip[] = [
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState<TabKey>("hotels");
+  const offersViewportRef = useRef<HTMLDivElement | null>(null);
+  const [canScrollOffersLeft, setCanScrollOffersLeft] = useState(false);
+  const [canScrollOffersRight, setCanScrollOffersRight] = useState(false);
+
+  const updateOffersScrollState = useCallback(() => {
+    const viewport = offersViewportRef.current;
+    if (!viewport) return;
+
+    const maxScrollLeft = viewport.scrollWidth - viewport.clientWidth;
+    setCanScrollOffersLeft(viewport.scrollLeft > 1);
+    setCanScrollOffersRight(viewport.scrollLeft < maxScrollLeft - 1);
+  }, []);
+
+  const scrollOffersByOneCard = useCallback(
+    (direction: -1 | 1) => {
+      const viewport = offersViewportRef.current;
+      if (!viewport) return;
+
+      const firstItem = viewport.querySelector<HTMLElement>(".offers-item");
+      if (!firstItem) return;
+
+      const viewportStyles = window.getComputedStyle(viewport);
+      const gapRaw = viewportStyles.columnGap || viewportStyles.gap || "0";
+      const gap = Number.parseFloat(gapRaw) || 0;
+      const scrollAmount = firstItem.offsetWidth + gap;
+
+      viewport.scrollBy({ left: direction * scrollAmount, behavior: "smooth" });
+    },
+    []
+  );
+
+  useEffect(() => {
+    updateOffersScrollState();
+    window.addEventListener("resize", updateOffersScrollState);
+    return () => window.removeEventListener("resize", updateOffersScrollState);
+  }, [updateOffersScrollState]);
   const handleImageError = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
     event.currentTarget.onerror = null;
     event.currentTarget.src = "/images/placeholder.svg";
@@ -217,27 +261,53 @@ const Home = () => {
       <section className="offers">
         <div className="container">
           <h2 className="section-title">We also Offer</h2>
-          <div className="offers-row">
-            {trips.map((trip) => {
-              const card = (
-                <div className="trip-card card">
-                  <img src={trip.image} alt={trip.title} onError={handleImageError} />
-                  <div className="trip-body">
-                    <h3 style={{ margin: 0 }}>{trip.title}</h3>
-                    <div className="trip-meta">{trip.rating}</div>
-                    <div className="price">{trip.price}</div>
-                  </div>
-                </div>
-              );
+          <div className="offers-slider">
+            <button
+              className="offers-arrow left"
+              type="button"
+              aria-label="Scroll offers left"
+              onClick={() => scrollOffersByOneCard(-1)}
+              disabled={!canScrollOffersLeft}
+            >
+              <FaChevronLeft aria-hidden="true" focusable="false" />
+            </button>
 
-              return trip.link ? (
-                <Link key={trip.title} to={trip.link} className="trip-card-link">
-                  {card}
-                </Link>
-              ) : (
-                <React.Fragment key={trip.title}>{card}</React.Fragment>
-              );
-            })}
+            <div className="offers-viewport" ref={offersViewportRef} onScroll={updateOffersScrollState}>
+              {trips.map((trip) => {
+                const card = (
+                  <div className="trip-card card">
+                    <img src={trip.image} alt={trip.title} onError={handleImageError} />
+                    <div className="trip-body">
+                      <h3 style={{ margin: 0 }}>{trip.title}</h3>
+                      {trip.rating ? <div className="trip-meta">{trip.rating}</div> : null}
+                      {trip.price ? <div className="price">{trip.price}</div> : null}
+                    </div>
+                  </div>
+                );
+
+                return (
+                  <div key={trip.title} className="offers-item">
+                    {trip.link ? (
+                      <Link to={trip.link} className="trip-card-link">
+                        {card}
+                      </Link>
+                    ) : (
+                      card
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            <button
+              className="offers-arrow right"
+              type="button"
+              aria-label="Scroll offers right"
+              onClick={() => scrollOffersByOneCard(1)}
+              disabled={!canScrollOffersRight}
+            >
+              <FaChevronRight aria-hidden="true" focusable="false" />
+            </button>
           </div>
         </div>
       </section>
