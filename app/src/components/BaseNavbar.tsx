@@ -1,7 +1,9 @@
-import { FaEnvelope, FaFacebookF, FaInstagram, FaPhone, FaTwitter } from "react-icons/fa";
+import { useState } from "react";
+import { FaEnvelope, FaFacebookF, FaInstagram, FaLock, FaPhone, FaTimes, FaTwitter } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 const BaseNavbar = () => {
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
   const navClass = ({ isActive }: { isActive: boolean }) => (isActive ? "nav-link active" : "nav-link");
 
   return (
@@ -29,7 +31,9 @@ const BaseNavbar = () => {
               </a>
             </div>
             <div className="top-actions">
-              <a href="#">Login</a>
+              <button type="button" className="top-action-link" onClick={() => setIsLoginOpen(true)}>
+                Login
+              </button>
               <a href="#">Sign Up</a>
               <select className="currency-select" defaultValue="USD">
                 <option value="USD">USD</option>
@@ -60,6 +64,51 @@ const BaseNavbar = () => {
           </nav>
         </div>
       </div>
+
+      {isLoginOpen ? (
+        <div className="login-modal-overlay" onClick={() => setIsLoginOpen(false)}>
+          <div className="login-modal" onClick={(event) => event.stopPropagation()}>
+            <div className="login-modal-header">
+              <h2>Log In</h2>
+              <button type="button" className="login-modal-close" onClick={() => setIsLoginOpen(false)}>
+                <FaTimes />
+              </button>
+            </div>
+            <div className="login-modal-body">
+              <div className="login-field">
+                <input type="text" placeholder="Email or Username" />
+                <span className="login-field-icon" aria-hidden="true">
+                  <FaEnvelope />
+                </span>
+              </div>
+              <div className="login-field">
+                <input type="password" placeholder="Password" />
+                <span className="login-field-icon" aria-hidden="true">
+                  <FaLock />
+                </span>
+              </div>
+              <button type="button" className="login-submit">
+                Log In
+              </button>
+              <div className="login-options">
+                <label className="login-remember">
+                  <input type="checkbox" />
+                  Remember me
+                </label>
+                <button type="button" className="login-forgot">
+                  Forgot Password?
+                </button>
+              </div>
+              <div className="login-signup">
+                <span>Do not have an account?</span>
+                <button type="button" className="login-signup-link">
+                  Sign Up
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </header>
   );
 };
