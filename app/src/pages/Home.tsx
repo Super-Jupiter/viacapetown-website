@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useCurrency } from "../context/CurrencyContext";
 
 type TabKey = "hotels" | "flights" | "tours";
 
@@ -17,7 +18,7 @@ type OfferCard = {
 type Trip = {
   title: string;
   image: string;
-  price?: string;
+  price?: number;
   rating?: string;
   link?: string;
 };
@@ -62,40 +63,41 @@ const trips: Trip[] = [
   {
     title: "Adventure Tours",
     image: "/images/home-also-offer-1-of-5.jpg",
-    price: "From $100,00",
+    price: 100,
     rating: "5/5 reviews",
     link: "/adventure-tours",
   },
   {
     title: "Golf Tours",
     image: "/images/home-also-offer-1-of-4.jpg",
-    price: "From $20,000",
+    price: 20000,
     rating: "4.9 / 5 (142 reviews)",
     link: "/golf-tours",
   },
   {
     title: "Rugby Tours",
     image: "/images/home-also-offer-2-of-4.jpg",
-    price: "From $50,000",
+    price: 50000,
     rating: "4.8 / 5 (110 reviews)",
     link: "/rugby-tours",
   },
   {
     title: "Conferences",
     image: "/images/home-also-offer-3-of-4.jpg",
-    price: "From $60,000",
+    price: 60000,
     rating: "4.9 / 5 (88 reviews)",
   },
   {
     title: "Team Building",
     image: "/images/home-also-offer-4-of-4.jpg",
-    price: "From $18,000",
+    price: 18000,
     rating: "4.7 / 5 (95 reviews)",
   },
 ];
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState<TabKey>("hotels");
+  const { formatCurrency } = useCurrency();
   const offersViewportRef = useRef<HTMLDivElement | null>(null);
   const [canScrollOffersLeft, setCanScrollOffersLeft] = useState(false);
   const [canScrollOffersRight, setCanScrollOffersRight] = useState(false);
@@ -280,7 +282,7 @@ const Home = () => {
                     <div className="trip-body">
                       <h3 style={{ margin: 0 }}>{trip.title}</h3>
                       {trip.rating ? <div className="trip-meta">{trip.rating}</div> : null}
-                      {trip.price ? <div className="price">{trip.price}</div> : null}
+                      {trip.price ? <div className="price">From {formatCurrency(trip.price)}</div> : null}
                     </div>
                   </div>
                 );

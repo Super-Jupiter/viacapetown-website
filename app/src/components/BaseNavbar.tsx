@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
+  FaChevronDown,
   FaEnvelope,
   FaFacebookF,
   FaInstagram,
@@ -8,15 +9,20 @@ import {
   FaQuestionCircle,
   FaTimes,
   FaTwitter,
-  FaUser,
   FaUserCircle,
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import { CurrencyCode, useCurrency } from "../context/CurrencyContext";
 
 const BaseNavbar = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
+  const currencyMenuRef = useRef<HTMLDivElement | null>(null);
+  const { currency, setCurrency } = useCurrency();
   const navClass = ({ isActive }: { isActive: boolean }) => (isActive ? "nav-link active" : "nav-link");
+
+  const currencyOptions: CurrencyCode[] = ["EUR", "AUD", "GBP", "ZAR"];
 
   const openLogin = () => {
     setIsSignUpOpen(false);
@@ -33,19 +39,22 @@ const BaseNavbar = () => {
     setIsSignUpOpen(false);
   };
 
+  useEffect(() => {
+    if (!isCurrencyOpen) return;
+    const handleClick = (event: MouseEvent) => {
+      if (!currencyMenuRef.current?.contains(event.target as Node)) {
+        setIsCurrencyOpen(false);
+      }
+    };
+    window.addEventListener("click", handleClick);
+    return () => window.removeEventListener("click", handleClick);
+  }, [isCurrencyOpen]);
+
   return (
     <header>
       <div className="topbar">
         <div className="container inner">
           <div className="topbar-left">
-            <span className="topbar-contact">
-              <FaEnvelope /> booking@viacapetown.com
-            </span>
-            <span className="topbar-contact">
-              <FaPhone /> +27 (0) 71 324 9488
-            </span>
-          </div>
-          <div className="topbar-right">
             <div className="social">
               <a href="#">
                 <FaFacebookF />
@@ -57,6 +66,10 @@ const BaseNavbar = () => {
                 <FaInstagram />
               </a>
             </div>
+            <span className="topbar-contact">booking@viacapetown.com</span>
+          </div>
+          <div className="topbar-right">
+            <span className="topbar-contact topbar-phone">(+27) 73 612 9488</span>
             <div className="top-actions">
               <button type="button" className="top-action-link" onClick={openLogin}>
                 Login
@@ -64,11 +77,36 @@ const BaseNavbar = () => {
               <button type="button" className="top-action-link" onClick={openSignUp}>
                 Sign Up
               </button>
-              <select className="currency-select" defaultValue="USD">
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-                <option value="ZAR">ZAR</option>
-              </select>
+            </div>
+            <div className="currency-dropdown" ref={currencyMenuRef}>
+              <button
+                type="button"
+                className="currency-trigger"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  setIsCurrencyOpen((current) => !current);
+                }}
+              >
+                {currency}
+                <FaChevronDown aria-hidden="true" />
+              </button>
+              {isCurrencyOpen ? (
+                <div className="currency-menu">
+                  {currencyOptions.map((code) => (
+                    <button
+                      key={code}
+                      type="button"
+                      className="currency-item"
+                      onClick={() => {
+                        setCurrency(code);
+                        setIsCurrencyOpen(false);
+                      }}
+                    >
+                      {code}
+                    </button>
+                  ))}
+                </div>
+              ) : null}
             </div>
           </div>
         </div>

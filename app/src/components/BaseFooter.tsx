@@ -1,7 +1,11 @@
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { CurrencyCode, useCurrency } from "../context/CurrencyContext";
 
 const BaseFooter = () => {
+  const { currency, setCurrency } = useCurrency();
+  const currencyOptions: CurrencyCode[] = ["USD", "EUR", "AUD", "GBP", "ZAR"];
+
   return (
     <>
       <section className="newsletter">
@@ -77,10 +81,17 @@ const BaseFooter = () => {
             <label className="footer-link" htmlFor="currency">
               Currency
             </label>
-            <select id="currency" className="currency-select">
-              <option>USD</option>
-              <option>EUR</option>
-              <option>ZAR</option>
+            <select
+              id="currency"
+              className="currency-select"
+              value={currency}
+              onChange={(event) => setCurrency(event.target.value as CurrencyCode)}
+            >
+              {currencyOptions.map((code) => (
+                <option key={code} value={code}>
+                  {code}
+                </option>
+              ))}
             </select>
           </div>
         </div>

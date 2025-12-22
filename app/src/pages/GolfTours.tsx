@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useCurrency } from "../context/CurrencyContext";
 
 type CourseHighlight = {
   course: string;
@@ -84,6 +85,7 @@ const quickFacts = [
 ];
 
 const GolfTours = () => {
+  const { formatCurrency } = useCurrency();
   const handleImageError = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
     event.currentTarget.onerror = null;
     event.currentTarget.src = "/images/placeholder.svg";
@@ -106,7 +108,7 @@ const GolfTours = () => {
             <h1 className="tour-title">Golf Tours</h1>
             <div className="tour-location">South Africa</div>
             <div className="tour-hero-meta">
-              <div className="tour-price-badge">From $3,000.00</div>
+              <div className="tour-price-badge">From {formatCurrency(3000)}</div>
               <Link className="btn btn-primary" to="/contact">
                 Inquiry
               </Link>
@@ -217,7 +219,7 @@ const GolfTours = () => {
 
           <aside className="tour-sidebar">
             <div className="card sidebar-card">
-              <div className="sidebar-price">From $3,000.00</div>
+              <div className="sidebar-price">From {formatCurrency(3000)}</div>
               <div className="sidebar-meta">Daily Tour • Group size 4 • South Africa</div>
               <Link className="btn btn-primary sidebar-btn" to="/contact">
                 Plan your golf trip

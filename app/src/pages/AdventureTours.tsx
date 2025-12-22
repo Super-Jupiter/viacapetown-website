@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useCurrency } from "../context/CurrencyContext";
 
 const galleryImages = [
   "/images/home-also-offer-1-of-5.jpg",
@@ -16,6 +17,7 @@ const quickFacts = [
 ];
 
 const AdventureTours = () => {
+  const { formatCurrency } = useCurrency();
   const handleImageError = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
     event.currentTarget.onerror = null;
     event.currentTarget.src = "/images/placeholder.svg";
@@ -38,7 +40,7 @@ const AdventureTours = () => {
             <h1 className="tour-title">Adventure Tours</h1>
             <div className="tour-location">Cape Town</div>
             <div className="tour-hero-meta">
-              <div className="tour-price-badge">From $100,00</div>
+              <div className="tour-price-badge">From {formatCurrency(100)}</div>
               <Link className="btn btn-primary" to="/contact">
                 Inquiry
               </Link>
@@ -101,4 +103,3 @@ const AdventureTours = () => {
 };
 
 export default AdventureTours;
-

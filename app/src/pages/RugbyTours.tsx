@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useCurrency } from "../context/CurrencyContext";
 
 type Fixture = {
   event: string;
@@ -53,6 +54,7 @@ const quickFacts = [
 ];
 
 const RugbyTours = () => {
+  const { formatCurrency } = useCurrency();
   const handleImageError = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
     event.currentTarget.onerror = null;
     event.currentTarget.src = "/images/placeholder.svg";
@@ -75,7 +77,7 @@ const RugbyTours = () => {
             <h1 className="tour-title">Rugby Tours</h1>
             <div className="tour-location">South Africa</div>
             <div className="tour-hero-meta">
-              <div className="tour-price-badge">From $4,000.00</div>
+              <div className="tour-price-badge">From {formatCurrency(4000)}</div>
               <Link className="btn btn-primary" to="/contact">
                 Inquiry
               </Link>
@@ -189,7 +191,7 @@ const RugbyTours = () => {
 
           <aside className="tour-sidebar">
             <div className="card sidebar-card">
-              <div className="sidebar-price">From $4,000.00</div>
+              <div className="sidebar-price">From {formatCurrency(4000)}</div>
               <div className="sidebar-meta">Event hospitality • Groups from 8 • South Africa</div>
               <Link className="btn btn-primary sidebar-btn" to="/contact">
                 Plan your rugby tour
