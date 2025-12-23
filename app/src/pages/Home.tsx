@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaChevronDown, FaChevronLeft, FaChevronRight, FaMapMarkerAlt, FaRegCalendarAlt, FaUserFriends } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useCurrency } from "../context/CurrencyContext";
 
@@ -24,9 +24,8 @@ type Trip = {
 };
 
 const searchTabs: { key: TabKey; label: string }[] = [
-  { key: "hotels", label: "Hotels" },
-  { key: "flights", label: "Flights" },
-  { key: "tours", label: "Tours" },
+  { key: "hotels", label: "Booking.com" },
+  { key: "flights", label: "Expedia" },
 ];
 
 const offerCards: OfferCard[] = [
@@ -157,45 +156,38 @@ const Home = () => {
                 </button>
               ))}
             </div>
-            <div className="search-form">
-              <div className="field">
-                <label htmlFor="location">Location</label>
-                <select id="location">
-                  <option>Cape Town</option>
-                  <option>Johannesburg</option>
-                  <option>Durban</option>
-                </select>
+            <div className="search-form booking-form">
+              <div className="booking-field">
+                <div className="booking-icon" aria-hidden="true">
+                  <FaMapMarkerAlt />
+                </div>
+                <div className="booking-content">
+                  <label htmlFor="destination">Destination</label>
+                  <input id="destination" type="text" placeholder="City or Hotel name" />
+                </div>
               </div>
-              <div className="field">
-                <label htmlFor="checkin">Check In</label>
-                <input id="checkin" type="date" />
+              <div className="booking-field">
+                <div className="booking-icon" aria-hidden="true">
+                  <FaRegCalendarAlt />
+                </div>
+                <div className="booking-content">
+                  <label htmlFor="dates">Check In - Out</label>
+                  <input id="dates" type="text" placeholder="mm/dd/yyyy - mm/dd/yyyy" />
+                </div>
               </div>
-              <div className="field">
-                <label htmlFor="checkout">Check Out</label>
-                <input id="checkout" type="date" />
+              <div className="booking-field booking-field-select">
+                <div className="booking-icon" aria-hidden="true">
+                  <FaUserFriends />
+                </div>
+                <div className="booking-content">
+                  <label htmlFor="guests">Guests</label>
+                  <input id="guests" type="text" placeholder="1 Adult - 0 Child" />
+                </div>
+                <FaChevronDown className="booking-chevron" aria-hidden="true" />
               </div>
-              <div className="field">
-                <label htmlFor="travellers">Travellers</label>
-                <select id="travellers">
-                  <option>1 Traveller</option>
-                  <option>2 Travellers</option>
-                  <option>3 Travellers</option>
-                  <option>4+ Travellers</option>
-                </select>
-              </div>
-              <div className="field">
-                <label htmlFor="purpose">Purpose</label>
-                <select id="purpose">
-                  <option>Business</option>
-                  <option>Leisure</option>
-                  <option>Bleisure</option>
-                </select>
-              </div>
-              <div className="field">
-                <button className="btn btn-primary search-submit" type="button">
-                  Search
-                </button>
-              </div>
+              <button className="btn btn-primary search-submit" type="button">
+                Search
+              </button>
             </div>
           </div>
         </div>

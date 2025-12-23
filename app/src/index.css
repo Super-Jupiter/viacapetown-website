@@ -501,12 +501,10 @@ img {
 }
 
 .hero-content {
-  width: 100%;
-  display: flex;
+  width: min(1200px, 92vw);
+  margin: 0 auto;
   flex-direction: column;
-  gap: 24px;
-  align-items: flex-start;
-}
+  }
 
 .hero-title {
   font-size: 36px;
@@ -524,30 +522,40 @@ img {
   border-radius: 6px;
   box-shadow: 0 15px 38px rgba(8, 33, 78, 0.35);
   padding: 22px;
+  width: min(1200px, 92vw);
+  margin: 0 auto;
 }
 
 .search-tabs {
   display: flex;
-  gap: 12px;
-  border-bottom: 1px solid #e5e9f2;
-  padding-bottom: 12px;
+  gap: 0;
   margin-bottom: 18px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #1b2740;
+  width: calc((100% - 60px) * 2 / 6 + 12px);
 }
 
 .tab {
-  padding: 10px 18px;
-  border-radius: 4px;
-  background: #f1f4fb;
-  border: 1px solid #e2e8f0;
+  flex: 1;
+  padding: 8px 16px;
+  border-radius: 0;
+  background: #1f2f4a;
+  border: none;
+  color: #fff;
   font-weight: 600;
   cursor: pointer;
+  font-size: 14px;
+}
+
+.tab + .tab {
+  border-left: 1px solid #2b3b57;
 }
 
 .tab.active {
-  background: #fff;
-  color: var(--navy);
-  border-color: var(--navy);
-  box-shadow: 0 10px 24px rgba(16, 47, 110, 0.08);
+  background: #4a8cf7;
+  color: #fff;
+  box-shadow: none;
 }
 
 .search-form {
@@ -555,6 +563,85 @@ img {
   grid-template-columns: repeat(6, 1fr);
   gap: 12px;
   align-items: end;
+}
+
+.search-form.booking-form {
+  grid-template-columns: 2.2fr 1.6fr 1.4fr 0.9fr;
+  gap: 0;
+  align-items: stretch;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.booking-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: #fff;
+  min-height: 72px;
+}
+
+.booking-field + .booking-field {
+  border-left: 1px solid #e5e9f2;
+}
+
+.booking-field-select {
+  padding-right: 42px;
+}
+
+.booking-icon {
+  color: #97a3b6;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.booking-content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.booking-content label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.booking-content input {
+  border: none;
+  padding: 0;
+  background: transparent;
+  font-size: 14px;
+  color: #22304a;
+}
+
+.booking-content input::placeholder {
+  color: #5b7bbf;
+}
+
+.booking-content input:focus {
+  outline: none;
+}
+
+.booking-chevron {
+  margin-left: auto;
+  color: #6b7280;
+}
+
+.booking-form .search-submit {
+  height: 100%;
+  width: 100%;
+  border-radius: 0;
+  background: #1b2740;
+  box-shadow: none;
+  letter-spacing: 0.6px;
+}
+
+.booking-form .search-submit:hover {
+  background: #162035;
 }
 
 .field {
