@@ -1,5 +1,17 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { FaChevronDown, FaChevronLeft, FaChevronRight, FaMapMarkerAlt, FaRegCalendarAlt, FaUserFriends } from "react-icons/fa";
+import {
+  FaBuilding,
+  FaCar,
+  FaChevronDown,
+  FaChevronLeft,
+  FaChevronRight,
+  FaMapMarkerAlt,
+  FaPlane,
+  FaRegCalendarAlt,
+  FaShip,
+  FaSuitcase,
+  FaUserFriends,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useCurrency } from "../context/CurrencyContext";
 
@@ -26,6 +38,14 @@ type Trip = {
 const searchTabs: { key: TabKey; label: string }[] = [
   { key: "hotels", label: "Booking.com" },
   { key: "flights", label: "Expedia" },
+];
+
+const expediaTabs = [
+  { key: "flight", icon: <FaPlane aria-hidden="true" /> },
+  { key: "stays", icon: <FaBuilding aria-hidden="true" /> },
+  { key: "cars", icon: <FaCar aria-hidden="true" /> },
+  { key: "packages", icon: <FaSuitcase aria-hidden="true" /> },
+  { key: "cruises", icon: <FaShip aria-hidden="true" /> },
 ];
 
 const offerCards: OfferCard[] = [
@@ -156,39 +176,110 @@ const Home = () => {
                 </button>
               ))}
             </div>
-            <div className="search-form booking-form">
-              <div className="booking-field">
-                <div className="booking-icon" aria-hidden="true">
-                  <FaMapMarkerAlt />
+            {activeTab === "hotels" ? (
+              <div className="search-form booking-form">
+                <div className="booking-field">
+                  <div className="booking-icon" aria-hidden="true">
+                    <FaMapMarkerAlt />
+                  </div>
+                  <div className="booking-content">
+                    <label htmlFor="destination">Destination</label>
+                    <input id="destination" type="text" placeholder="City or Hotel name" />
+                  </div>
                 </div>
-                <div className="booking-content">
-                  <label htmlFor="destination">Destination</label>
-                  <input id="destination" type="text" placeholder="City or Hotel name" />
+                <div className="booking-field">
+                  <div className="booking-icon" aria-hidden="true">
+                    <FaRegCalendarAlt />
+                  </div>
+                  <div className="booking-content">
+                    <label htmlFor="dates">Check In - Out</label>
+                    <input id="dates" type="text" placeholder="mm/dd/yyyy - mm/dd/yyyy" />
+                  </div>
+                </div>
+                <div className="booking-field booking-field-select">
+                  <div className="booking-icon" aria-hidden="true">
+                    <FaUserFriends />
+                  </div>
+                  <div className="booking-content">
+                    <label htmlFor="guests">Guests</label>
+                    <input id="guests" type="text" placeholder="1 Adult - 0 Child" />
+                  </div>
+                  <FaChevronDown className="booking-chevron" aria-hidden="true" />
+                </div>
+                <button className="btn btn-primary search-submit" type="button">
+                  Search
+                </button>
+              </div>
+            ) : (
+              <div className="expedia-form">
+                <div className="expedia-tabs" role="tablist" aria-label="Expedia search types">
+                  {expediaTabs.map((tab) => (
+                    <button
+                      key={tab.key}
+                      className={`expedia-tab ${tab.key === "flight" ? "active" : ""}`}
+                      type="button"
+                      role="tab"
+                      aria-selected={tab.key === "flight"}
+                    >
+                      {tab.icon}
+                    </button>
+                  ))}
+                </div>
+                <div className="expedia-header">
+                  <span className="expedia-header-label">SEARCH</span>
+                  <span className="expedia-header-sub">Flight</span>
+                </div>
+                <div className="expedia-fields">
+                  <div className="expedia-field">
+                    <label htmlFor="flying-from">Flying from</label>
+                    <input id="flying-from" type="text" placeholder="City or airport" />
+                  </div>
+                  <div className="expedia-field">
+                    <label htmlFor="flying-to">Flying to</label>
+                    <input id="flying-to" type="text" placeholder="City or airport" />
+                  </div>
+                  <div className="expedia-field">
+                    <label htmlFor="departing">Departing</label>
+                    <input id="departing" type="text" placeholder="mm/dd/yyyy" />
+                  </div>
+                  <div className="expedia-field">
+                    <label htmlFor="returning">Returning</label>
+                    <input id="returning" type="text" placeholder="mm/dd/yyyy" />
+                  </div>
+                  <div className="expedia-field">
+                    <label htmlFor="adults">Adults (18+)</label>
+                    <select id="adults" defaultValue="1">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                    </select>
+                  </div>
+                  <div className="expedia-field">
+                    <label htmlFor="children">Children (0-17)</label>
+                    <select id="children" defaultValue="0">
+                      <option value="0">0</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                    </select>
+                  </div>
+                  <div className="expedia-field">
+                    <label htmlFor="infants">Infant (under 2)</label>
+                    <select id="infants" defaultValue="0">
+                      <option value="0">0</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="expedia-actions">
+                  <button className="btn btn-primary expedia-search" type="button">
+                    Search
+                  </button>
                 </div>
               </div>
-              <div className="booking-field">
-                <div className="booking-icon" aria-hidden="true">
-                  <FaRegCalendarAlt />
-                </div>
-                <div className="booking-content">
-                  <label htmlFor="dates">Check In - Out</label>
-                  <input id="dates" type="text" placeholder="mm/dd/yyyy - mm/dd/yyyy" />
-                </div>
-              </div>
-              <div className="booking-field booking-field-select">
-                <div className="booking-icon" aria-hidden="true">
-                  <FaUserFriends />
-                </div>
-                <div className="booking-content">
-                  <label htmlFor="guests">Guests</label>
-                  <input id="guests" type="text" placeholder="1 Adult - 0 Child" />
-                </div>
-                <FaChevronDown className="booking-chevron" aria-hidden="true" />
-              </div>
-              <button className="btn btn-primary search-submit" type="button">
-                Search
-              </button>
-            </div>
+            )}
           </div>
         </div>
       </section>
