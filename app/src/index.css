@@ -517,23 +517,26 @@ img {
 }
 
 .search-card {
-  background: #fff;
+  background: transparent;
   color: var(--text);
   border-radius: 6px;
-  box-shadow: 0 15px 38px rgba(8, 33, 78, 0.35);
-  padding: 22px;
+  box-shadow: none;
+  padding: 0;
   width: min(1200px, 92vw);
   margin: 0 auto;
+  border: none;
 }
 
 .search-tabs {
   display: flex;
   gap: 0;
-  margin-bottom: 18px;
+  margin-bottom: -6px;
   border-radius: 6px;
   overflow: hidden;
-  border: 1px solid #1b2740;
+  border: none;
   width: calc((100% - 60px) * 2 / 6 + 12px);
+  position: relative;
+  z-index: 2;
 }
 
 .tab {
@@ -569,10 +572,11 @@ img {
   grid-template-columns: 2.2fr 1.6fr 1.4fr 0.9fr;
   gap: 0;
   align-items: stretch;
-  border: 1px solid #e2e8f0;
+  border: none;
   border-radius: 6px;
   overflow: hidden;
-  background: #fff;
+  position: relative;
+  z-index: 1;
 }
 
 .booking-field {
@@ -582,6 +586,11 @@ img {
   padding: 14px 18px;
   background: #fff;
   min-height: 72px;
+}
+
+.booking-field:first-child {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
 }
 
 .booking-field + .booking-field {
@@ -634,7 +643,7 @@ img {
 .booking-form .search-submit {
   height: 100%;
   width: 100%;
-  border-radius: 0;
+  border-radius: 0 6px 6px 0;
   background: #1b2740;
   box-shadow: none;
   letter-spacing: 0.6px;
